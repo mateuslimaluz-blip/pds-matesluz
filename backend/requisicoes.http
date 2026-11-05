@@ -1,7 +1,7 @@
 ### Listar todos os donos
 GET http://localhost:5000/donos
 
-### Buscar um dono pelo id
+### Buscar um dono pelo id (Exercício 3: inclui chave "pets")
 GET http://localhost:5000/donos/1
 
 ### Cadastrar um novo dono
@@ -27,9 +27,7 @@ DELETE http://localhost:5000/donos/3
 
 
 ### ----------------------------------------------------------
-### DAQUI PARA BAIXO SAO AS ROTAS QUE VOCE VAI ESCREVER
-### Elas so vao funcionar depois que voce criar as rotas de pets
-### no arquivo app.py
+### ROTAS DE PETS E EXERCÍCIOS
 ### ----------------------------------------------------------
 
 ### Listar todos os pets (com o nome do dono)
@@ -65,3 +63,12 @@ Content-Type: application/json
 
 ### Remover um pet
 DELETE http://localhost:5000/pets/5
+
+### Exercício 2: Pets de um dono que tem pets
+GET http://localhost:5000/donos/1/pets
+
+### Exercício 2: Pets de um dono sem pets (lista vazia)
+GET http://localhost:5000/donos/2/pets
+
+### Exercício 2: Dono inexistente (deve retornar HTTP 404)
+GET http://localhost:5000/donos/999/pets

@@ -62,6 +62,7 @@ def listar_donos():
     return jsonify([dono.to_dict() for dono in donos])
 
 
+# Exercício 3: devolve os dados do dono com a chave "pets" contendo seus pets
 @app.route("/donos/<int:dono_id>", methods=["GET"])
 def buscar_dono(dono_id):
     dono = db.session.get(Dono, dono_id)
@@ -69,7 +70,23 @@ def buscar_dono(dono_id):
     if dono is None:
         return jsonify({"erro": "Dono nao encontrado"}), 404
 
-    return jsonify(dono.to_dict())
+    dados_dono = dono.to_dict()
+    dados_dono["pets"] = [pet.to_dict() for pet in dono.pets]
+
+    return jsonify(dados_dono)
+
+
+# Exercício 2: devolve a lista de pets de um dono específico usando dono.pets
+@app.route("/donos/<int:dono_id>/pets", methods=["GET"])
+def listar_pets_do_dono(dono_id):
+    dono = db.session.get(Dono, dono_id)
+
+    if dono is None:
+        return jsonify({"erro": "Dono nao encontrado"}), 404
+
+    pets = [pet.to_dict() for pet in dono.pets]
+
+    return jsonify(pets)
 
 
 @app.route("/donos", methods=["POST"])
